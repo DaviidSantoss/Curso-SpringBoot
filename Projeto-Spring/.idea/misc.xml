@@ -5,7 +5,15 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../DesafioSpring/DesafioSpring/pom.xml" />
+        <option value="$PROJECT_DIR$/../DesafioSpringBoot/DesafioSpring/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../DesafioSpring/DesafioSpring/pom.xml" />
+        <option value="$PROJECT_DIR$/../DesafioSpringBoot/DesafioSpring/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" default="true" project-jdk-name="25" project-jdk-type="JavaSDK" />
