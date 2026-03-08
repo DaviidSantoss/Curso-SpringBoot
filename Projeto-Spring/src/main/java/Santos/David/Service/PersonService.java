@@ -2,7 +2,7 @@ package Santos.David.Service;
 
 import Santos.David.Exception.ResourceNotFoundException;
 import Santos.David.Service.repository.PersonRepository;
-import Santos.David.data.dto.PersonDTO;
+import Santos.David.data.dto.v1.PersonDTO;
 import static Santos.David.mapper.ObjectMapper.parseListObjects;
 import static Santos.David.mapper.ObjectMapper.parseObject;
 
@@ -51,13 +51,15 @@ public class PersonService {
 
 
     /* Metodo onde retornamos uma pessoa. */
-    public PersonDTO create (PersonDTO person) {
+    public PersonDTO create(PersonDTO person) {
 
-        var entity  = parseObject(person, Person.class);
+        var entity = parseObject(person, Person.class);
 
         logger.info("CRIAMOS ALGUEM CARAI!");
 
-        return parseObject(repository.save(entity),PersonDTO.class);
+        Person saved = repository.save(entity);
+
+        return parseObject(saved, PersonDTO.class);
     }
 
     /* Metodo para alterar os dados de uma pessoa */

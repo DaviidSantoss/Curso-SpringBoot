@@ -1,13 +1,13 @@
 package Santos.David.Controllers;
 
 import Santos.David.Service.PersonService;
-import Santos.David.data.dto.PersonDTO;
-import Santos.David.model.Person;
+import Santos.David.data.dto.v1.PersonDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -22,7 +22,13 @@ public class PersonController {
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public PersonDTO findById(@PathVariable("id") Long id) {
 
-        return service.findById(id);
+        var person  = service.findById(id);
+        person.setBirthDate(new Date());
+//        person.setPhoneNumber("123456789");
+        person.setPhoneNumber("");
+        person.setLastName(null);
+        person.setSensitiveData("123");
+        return person;
 
     }
 

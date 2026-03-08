@@ -10,15 +10,18 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: false
 
-logging:
-  level:
-    root: WARN
-    org.springframework: WARN
-    org.hibernate: WARN
-    org.apache: WARN
-    com.zaxxer.hikari: WARN
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+#logging:
+#  level:
+#    root: DEBUG
+#    org.springframework: WARN
+#    org.hibernate: WARN
+#    org.apache: WARN
+#    com.zaxxer.hikari: WARN
 
     #Em produção recomenda-se usar log em nivel de WARN OU ERROR

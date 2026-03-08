@@ -1,7 +1,10 @@
 package Santos.David.mapper;
 
+import Santos.David.data.dto.v1.PersonDTO;
+import Santos.David.data.dto.v2.PersonDTOV2;
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
+import tools.jackson.databind.ser.std.SimpleFilterProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,4 +43,6 @@ public class ObjectMapper {
 
         return destinationsObjects;
     }
+
+
 }

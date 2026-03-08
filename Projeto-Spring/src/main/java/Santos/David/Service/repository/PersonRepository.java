@@ -1,6 +1,5 @@
 package Santos.David.Service.repository;
 
-import Santos.David.data.dto.PersonDTO;
 import Santos.David.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 

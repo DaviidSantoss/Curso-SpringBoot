@@ -2,7 +2,7 @@ package Santos.David.unitests.mapper;
 
 import java.util.List;
 
-import Santos.David.data.dto.PersonDTO;
+import Santos.David.data.dto.v1.PersonDTO;
 import Santos.David.model.Person;
 import Santos.David.unitests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;

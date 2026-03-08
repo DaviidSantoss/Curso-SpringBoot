@@ -47,7 +47,7 @@ public class A14_DTO {
    *
    * Metodo publico da classe "Service" do tipo "PersonDTO" para a criação de uma nova pessao,
    * Esse codigo "var entity  = parseObject(person, Person.class);" recebe um "person" do tipo
-   * "PersonDTO" depois converte para  "Person.class"(Entity) e depois salva no banco como "Entitu"
+   * "PersonDTO" depois converte para  "Person.class"(Entity) e depois salva no banco como "Entity"
    * "parseObject(repository.save(entity)" e logo em seguida retorna como  "PersonDTO.class" ?
 
     public PersonDTO create (PersonDTO person) {
