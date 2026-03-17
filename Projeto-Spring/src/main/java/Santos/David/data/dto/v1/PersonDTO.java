@@ -3,7 +3,6 @@ package Santos.David.data.dto.v1;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 import javax.xml.crypto.Data;
 import java.io.DataInput;
@@ -13,7 +12,6 @@ import java.util.Date;
 import java.util.Objects;
 
 //@JsonFilter("PersonFilter")
-@JacksonXmlRootElement(localName = "Person")
 @JsonPropertyOrder({"id","PrimeiroNome","lastName","birthDate","gender","address",})
 public class PersonDTO implements Serializable {
 

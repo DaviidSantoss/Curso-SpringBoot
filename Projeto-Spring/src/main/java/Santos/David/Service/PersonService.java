@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 @Service
 public class PersonService {
 
-    /* Logger é uma ferramenta para registrar o que acontece na sua aplicação. */
+    /* Logger é umaaa ferramenta para registrar o que acontece na sua aplicação. */
     private final Logger logger = Logger.getLogger(PersonService.class.getName());
 
     @Autowired

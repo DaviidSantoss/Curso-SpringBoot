@@ -6,17 +6,13 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../DesafioSpring/DesafioSpring/pom.xml" />
-        <option value="$PROJECT_DIR$/../DesafioSpringBoot/DesafioSpring/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/../DesafioSpring/DesafioSpring/pom.xml" />
-        <option value="$PROJECT_DIR$/../DesafioSpringBoot/DesafioSpring/pom.xml" />
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" default="true" project-jdk-name="25" project-jdk-type="JavaSDK">
-    <output url="file://target/classes" />
-  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="25" project-jdk-type="JavaSDK" />
 </project>

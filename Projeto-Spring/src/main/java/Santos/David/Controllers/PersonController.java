@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import java.util.Date;
 import java.util.List;
@@ -20,12 +19,12 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-    @GetMapping(value = "/{id}",produces ={MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public PersonDTO findById(@PathVariable("id") Long id) {
 
         var person  = service.findById(id);
         person.setBirthDate(new Date());
-//      person.setPhoneNumber("123456789");
+//        person.setPhoneNumber("123456789");
         person.setPhoneNumber("");
         person.setLastName(null);
         person.setSensitiveData("123");
@@ -37,13 +36,12 @@ public class PersonController {
     *  Get é utilizando quando queremos "Encontrar" algum objeto.
     *
     * produces = define que a respota será no formato JSON. */
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PersonDTO> findAll() {
 
         return service.findAll();
 
     }
-
 
     /* Mapeia requisições HTTP do tipo POST para este metodo.
     *  POST é usado quando queremos CRIAR um novo recurso.
@@ -52,16 +50,16 @@ public class PersonController {
     *  consumes = define que o metodo espera receber JSON
     *
     * */
-        @PostMapping(produces ={MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},
-            consumes ={MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+        @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
    public PersonDTO create(@RequestBody PersonDTO person) {
 
         return  service.create(person);
    }
 
    /* Requisição HTTP PUT utilizada para alterar os dados de um objeto. */
-   @PutMapping(produces ={MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE},
-            consumes ={MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
 
    public PersonDTO update(@RequestBody PersonDTO person) {
 
