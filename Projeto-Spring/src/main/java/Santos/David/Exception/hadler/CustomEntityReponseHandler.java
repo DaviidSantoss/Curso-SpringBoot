@@ -1,6 +1,7 @@
 package Santos.David.Exception.hadler;
 
 import Santos.David.Exception.ExceptionResponse;
+import Santos.David.Exception.RequiredObjectIsNullException;
 import Santos.David.Exception.ResourceNotFoundException;
 import Santos.David.Exception.UnsupportedMathOperationException;
 import org.springframework.http.HttpStatus;
@@ -52,6 +53,17 @@ public class CustomEntityReponseHandler extends ResponseEntityExceptionHandler {
                 request.getDescription(false));
 
         return new ResponseEntity<ExceptionResponse>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RequiredObjectIsNullException.class)
+    public final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request) {
+
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<ExceptionResponse>(response, HttpStatus.BAD_REQUEST);
     }
 
 }

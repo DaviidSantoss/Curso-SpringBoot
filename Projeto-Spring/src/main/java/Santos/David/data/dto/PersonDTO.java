@@ -1,11 +1,9 @@
-package Santos.David.data.dto.v1;
+package Santos.David.data.dto;
 
 
 import com.fasterxml.jackson.annotation.*;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.hateoas.RepresentationModel;
 
-import javax.xml.crypto.Data;
-import java.io.DataInput;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,7 +11,7 @@ import java.util.Objects;
 
 //@JsonFilter("PersonFilter")
 @JsonPropertyOrder({"id","PrimeiroNome","lastName","birthDate","gender","address",})
-public class PersonDTO implements Serializable {
+public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;

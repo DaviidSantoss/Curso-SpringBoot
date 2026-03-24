@@ -1,7 +1,7 @@
 package Santos.David.Controllers;
 
 import Santos.David.Service.PersonService;
-import Santos.David.data.dto.v1.PersonDTO;
+import Santos.David.data.dto.PersonDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
