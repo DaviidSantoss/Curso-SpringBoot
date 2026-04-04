@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-//@JsonFilter("PersonFilter")
+//@JsonFilter("BookFilter")
 @JsonPropertyOrder({"id","PrimeiroNome","lastName","birthDate","gender","address",})
 public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serializable {
 

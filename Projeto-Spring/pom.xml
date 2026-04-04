@@ -21,6 +21,7 @@
 	<properties>
 		<java.version>25</java.version>
 		<dozer.version>7.0.0</dozer.version>
+		<springdoc.version>3.0.2</springdoc.version>
 	</properties>
 
 	<dependencies>
@@ -89,6 +90,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Swagger -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -98,7 +106,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<release>21</release>
+					<release>25</release>
 				</configuration>
 			</plugin>
 

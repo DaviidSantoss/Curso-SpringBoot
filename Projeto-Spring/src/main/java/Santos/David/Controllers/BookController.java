@@ -1,0 +1,65 @@
+package Santos.David.Controllers;
+
+import Santos.David.Service.BookService;
+import Santos.David.data.dto.BookDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+/* O "@RestController" nos diz que essa classe será responsável
+ * por responder as requisições HTTP */
+@RestController
+
+/* O @ResquestMapping será utilizado para definirmos nossa URL*/
+@RequestMapping("/books")
+@Tag(name = "Books",description = "Endpoints for Managing Books")
+public class BookController implements Santos.David.Controllers.docs.BookControllerDocs {
+
+
+    @Autowired
+    private BookService service;
+
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public BookDTO findById(@PathVariable("id") Long id){
+
+        return service.findById(id);
+    }
+
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public List<BookDTO> findAll(){
+
+        return service.findAll();
+    }
+
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public BookDTO create(@RequestBody BookDTO book){
+
+        return service.create(book);
+    }
+
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public BookDTO update(@RequestBody BookDTO book){
+
+        return service.update(book);
+    }
+
+
+
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+}

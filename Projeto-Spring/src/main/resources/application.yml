@@ -16,12 +16,9 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
-#logging:
-#  level:
-#    root: DEBUG
-#    org.springframework: WARN
-#    org.hibernate: WARN
-#    org.apache: WARN
-#    com.zaxxer.hikari: WARN
 
-    #Em produção recomenda-se usar log em nivel de WARN OU ERROR
+springdoc:
+  enable-hateoas: false
+  paths-to-match: /books/**, /person/**
+  swagger-ui:
+    use-root-path: true

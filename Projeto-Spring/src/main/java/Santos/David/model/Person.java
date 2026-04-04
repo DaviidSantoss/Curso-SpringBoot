@@ -12,7 +12,7 @@ import java.util.Objects;
 * da classe após ela ser mapeada para o banco de dados.  */
 @Entity
 @Table(name = "person")
-public class Person  implements Serializable {
+public class Person implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
