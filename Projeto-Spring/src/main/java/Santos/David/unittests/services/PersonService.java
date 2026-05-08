@@ -1,9 +1,9 @@
-package Santos.David.Service;
+package Santos.David.services;
 
 import Santos.David.Exception.RequiredObjectIsNullException;
 import org.springframework.beans.factory.annotation.Autowired;
 import Santos.David.Exception.ResourceNotFoundException;
-import Santos.David.Service.repository.PersonRepository;
+import Santos.David.services.repository.PersonRepository;
 import Santos.David.Controllers.PersonController;
 import org.springframework.stereotype.Service;
 import Santos.David.data.dto.PersonDTO;

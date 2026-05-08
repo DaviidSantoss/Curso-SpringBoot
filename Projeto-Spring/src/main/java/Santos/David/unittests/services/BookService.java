@@ -1,12 +1,10 @@
-package Santos.David.Service;
+package Santos.David.services;
 
 import Santos.David.Controllers.BookController;
-import Santos.David.Controllers.PersonController;
 import Santos.David.Exception.RequiredObjectIsNullException;
 import Santos.David.Exception.ResourceNotFoundException;
-import Santos.David.Service.repository.BookRepository;
+import Santos.David.services.repository.BookRepository;
 import Santos.David.data.dto.BookDTO;
-import Santos.David.data.dto.PersonDTO;
 import Santos.David.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

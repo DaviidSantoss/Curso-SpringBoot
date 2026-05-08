@@ -1,4 +1,4 @@
-package Santos.David.Service;
+package Santos.David.services;
 
 import Santos.David.Exception.UnsupportedMathOperationException;
 

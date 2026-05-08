@@ -35,9 +35,8 @@ public class A14_DTO {
     *
     *   Metodo publico da classe Controller do  tipo "PersonDTO" para a criação de uma nova pessoa:,
 
-        @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-   public PersonDTO create(@RequestBody PersonDTO person) {
+        @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+        public PersonDTO create(@RequestBody PersonDTO person) {
 
         return  service.create(person);
    }
@@ -45,7 +44,7 @@ public class A14_DTO {
    *
    *
    *
-   * Metodo publico da classe "Service" do tipo "PersonDTO" para a criação de uma nova pessao,
+   * Metodo publico da classe "Service" do tipo "PersonDTO" para a criação de uma nova pessoa,
    * Esse codigo "var entity  = parseObject(person, Person.class);" recebe um "person" do tipo
    * "PersonDTO" depois converte para  "Person.class"(Entity) e depois salva no banco como "Entity"
    * "parseObject(repository.save(entity)" e logo em seguida retorna como  "PersonDTO.class" ?
@@ -62,6 +61,21 @@ public class A14_DTO {
     * Ou seja A Classe Controller não trabalha mais com Entity e sim com DTO isso acontece
     * Porque "Entity" representa banco já o "DTO" representa API. "DTO" desacopla sua API do banco,
     *  O banco pode mudar a sua  API permanecer estável.
+    *
+    * A Conversão feita em "var entity  = parseObject(person, Person.class);" se origina na classe
+    * "ObjectMapper" no packege "mapper" ficando mapper/ObjectMapper.class,a conversão é feita do seguinte
+    * modo:
+    *
+    * O metodo estático recebe parâmetros genéricos sendo eles "O" de origin, no caso a origem sendo o "PersonDTO",
+    * e o "D" de destido sendo a classe "Person".
+    *
+    * public static <O, D> D parseObject(O origin, Class<D> destination) {
+    *
+    *     por fim ele retorna os dados de uma seguinte forma
+    *     Ele pega os dados do origin e copia para o destination
+    *    return mapper.map(origin, destination);
+    *
+       }
     *
     *  */
 

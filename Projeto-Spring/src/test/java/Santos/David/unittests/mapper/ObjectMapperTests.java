@@ -1,10 +1,10 @@
-package Santos.David.unitests.mapper;
+package Santos.David.mapper;
 
 import java.util.List;
 
 import Santos.David.data.dto.PersonDTO;
 import Santos.David.model.Person;
-import Santos.David.unitests.mapper.mocks.MockPerson;
+import Santos.David.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static Santos.David.mapper.ObjectMapper.parseListObjects;

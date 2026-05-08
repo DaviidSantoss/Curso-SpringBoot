@@ -1,4 +1,4 @@
-package Santos.David.unitests.mapper.mocks;
+package Santos.David.mapper.mocks;
 
 import Santos.David.data.dto.PersonDTO;
 import Santos.David.model.Person;
