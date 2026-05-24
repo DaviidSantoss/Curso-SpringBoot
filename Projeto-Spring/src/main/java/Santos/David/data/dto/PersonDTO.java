@@ -3,13 +3,14 @@ package Santos.David.data.dto;
 
 import com.fasterxml.jackson.annotation.*;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-//@JsonFilter("BookFilter")
+@Relation(collectionRelation = "people")
 @JsonPropertyOrder({"id","PrimeiroNome","lastName","birthDate","gender","address",})
 public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serializable {
 
@@ -38,6 +39,8 @@ public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serial
     private Date birthDate;
 
     private String address;
+
+    private Boolean enabled;
 
 //    /*Utilizado para "ignorar" o campo na hora de retornar
 //    * o Json.  */
@@ -119,15 +122,24 @@ public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serial
         this.sensitiveData = sensitiveData;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         PersonDTO personDTO = (PersonDTO) o;
-        return Objects.equals(getId(), personDTO.getId()) && Objects.equals(getFirstName(), personDTO.getFirstName()) && Objects.equals(getLastName(), personDTO.getLastName()) && Objects.equals(getSensitiveData(), personDTO.getSensitiveData()) && Objects.equals(getPhoneNumber(), personDTO.getPhoneNumber()) && Objects.equals(getBirthDate(), personDTO.getBirthDate()) && Objects.equals(getAddress(), personDTO.getAddress()) && Objects.equals(getGender(), personDTO.getGender());
+        return Objects.equals(id, personDTO.id) && Objects.equals(firstName, personDTO.firstName) && Objects.equals(lastName, personDTO.lastName) && Objects.equals(sensitiveData, personDTO.sensitiveData) && Objects.equals(phoneNumber, personDTO.phoneNumber) && Objects.equals(birthDate, personDTO.birthDate) && Objects.equals(address, personDTO.address) && Objects.equals(enabled, personDTO.enabled) && Objects.equals(gender, personDTO.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getSensitiveData(), getPhoneNumber(), getBirthDate(), getAddress(), getGender());
+        return Objects.hash(super.hashCode(), id, firstName, lastName, sensitiveData, phoneNumber, birthDate, address, enabled, gender);
     }
 }

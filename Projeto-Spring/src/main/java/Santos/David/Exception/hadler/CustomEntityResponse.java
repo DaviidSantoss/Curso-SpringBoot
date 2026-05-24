@@ -22,7 +22,7 @@ import java.util.Date;
 @ControllerAdvice
 public class CustomEntityResponse extends ResponseEntityExceptionHandler {
 
-    /* Metodo criado para tratal qualquer tipo de excessão, a notação "@ExceptionHandler(value = Exception.class)"
+    /* Metodo criado para tratar qualquer tipo de excessão, a notação "@ExceptionHandler(value = Exception.class)"
      nos diz que este metodo vai capturar erros do tipo Exception que são os basicamente qualquer erro.  */
     @ExceptionHandler(value = Exception.class)
     public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request) {

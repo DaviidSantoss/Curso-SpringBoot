@@ -2,9 +2,9 @@ package Textos;
 
 public class A06_HATEOAS {
 
-	// ======================================
+	// ========================================================
 	// HATEOAS - Hypermedia As The Engine Of Application State
-	// ======================================
+	// ========================================================
 
 	/*
 	 * Em APIs REST, significa que a resposta da API já vem dizendo quais são os próximos passos

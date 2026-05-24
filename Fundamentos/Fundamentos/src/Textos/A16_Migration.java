@@ -26,6 +26,19 @@ public class A16_Migration {
                 └─ db
                      └─ migration
 
+    *
+    * Depêndencias para utilizar o flyway
+    *
+    *  		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
+
 
 
     * Exemplo migrations:

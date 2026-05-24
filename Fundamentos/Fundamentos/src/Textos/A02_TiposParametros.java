@@ -8,7 +8,7 @@ public class A02_TiposParametros {
 
 	/*
 	 * Os paths são passados através da própria URL "(baseUrl)) /api/person/v1/asc/10/1?name=leo" no
-	 * caso nossos parâmetros são "asc/10/1" queremos 10 repostas por vez começando da primeira página.
+	 * caso nossos parâmetros são "asc/10/1" queremos 10 repostas por vez, começando da primeira página.
 	 * 
 	 * E se eu preciso que um parâmetro seja obrigatorio eu uso o Path Params.
 	 */
@@ -18,7 +18,7 @@ public class A02_TiposParametros {
 	// ======================
 
 	/*
-	 * O Query( ou em portugûes "busca") utilizamos quando vamos fazer uma pesquisa nessa caso vemos
+	 * O Query( ou em portugûes "busca") utilizamos quando vamos fazer uma pesquisa, nessa caso vemos
 	 * "((baseUrl)) /api/person/v1/find-by-name?firstName=Leo&lastName=an" onde nosso parâmetro é
 	 * "firstName=Leo&lastName=an" o Query params vem sempre ao final do path antecedido por uma "?"
 	 * 

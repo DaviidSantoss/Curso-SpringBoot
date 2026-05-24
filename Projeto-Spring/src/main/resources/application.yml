@@ -1,10 +1,12 @@
+cors:
+  originPatterns: http://localhost:8080,http://localhost:3000,https://www.instagram.com/david.snt0s/
 spring:
   application:
     name: Projeto-Spring
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/projeto_spring?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/projeto_spring?createDatabaseIfNotExist=true
     username: root
     password: 12345
 

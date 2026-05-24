@@ -1,4 +1,4 @@
-package br.com.erudio.integrationtests.testcontainers;
+package Santos.David.testcontainers;
 
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -16,9 +16,13 @@ public class AbstractIntegrationTest {
 
     static class Initializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-        static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:9.1.0");
+        static MySQLContainer<?> mysql = new MySQLContainer<>("mysql:9.0")
+                .withDatabaseName("testdb")
+                .withUsername("test")
+                .withPassword("test");
 
         private static void startContainers() {
+            // deepStart inicia em paralelo e aguarda todos ficarem healthy
             Startables.deepStart(Stream.of(mysql)).join();
         }
 
@@ -34,8 +38,10 @@ public class AbstractIntegrationTest {
         public void initialize(ConfigurableApplicationContext applicationContext) {
             startContainers();
             ConfigurableEnvironment environment = applicationContext.getEnvironment();
-            MapPropertySource testcontainers = new MapPropertySource("testcontainers",
-                    (Map) createConnectionConfiguration());
+            MapPropertySource testcontainers = new MapPropertySource(
+                    "testcontainers",
+                    (Map) createConnectionConfiguration()
+            );
             environment.getPropertySources().addFirst(testcontainers);
         }
     }

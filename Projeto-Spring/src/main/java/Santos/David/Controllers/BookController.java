@@ -4,10 +4,14 @@ import Santos.David.Service.BookService;
 import Santos.David.data.dto.BookDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 /* O "@RestController" nos diz que essa classe será responsável
  * por responder as requisições HTTP */
@@ -33,9 +37,18 @@ public class BookController implements Santos.David.Controllers.docs.BookControl
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
-    public List<BookDTO> findAll(){
+    public ResponseEntity<PagedModel<EntityModel<BookDTO>>> findAll(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "3") Integer size,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction
+    )
+    {
 
-        return service.findAll();
+       var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        Pageable pageable = PageRequest.of(page,size,sortDirection,"title");
+
+        return  ResponseEntity.ok(service.findAll(pageable));
     }
 
 

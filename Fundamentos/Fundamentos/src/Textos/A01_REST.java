@@ -28,9 +28,9 @@ public class A01_REST {
 	 * 
 	 */
 
-	// ======================
+	// =============================
 	// Formatos suportados pelo REST
-	// ======================
+	// =============================
 
 	/* xml,json,csv,Texto,imagens,HTML,PDF,Binário,Etc */
 

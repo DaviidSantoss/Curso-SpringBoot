@@ -1,51 +1,57 @@
-package Santos.David.data.dto;
+package Santos.David.integrationtest.dto;
 
 
-import com.fasterxml.jackson.annotation.*;
-import org.springframework.hateoas.RepresentationModel;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-//@JsonFilter("BookFilter")
 @JsonPropertyOrder({"id","PrimeiroNome","lastName","birthDate","gender","address",})
-public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serializable {
+public class PersonDTO implements Serializable {
+
 
     @Serial
     private static final long serialVersionUID = 1L;
 
+
     private Long id;
 
-    /* Utilizado para mudar o nome do campo na hora
-    * de retornar o Json */
+
     @JsonProperty("PrimeiroNome")
     private String firstName;
 
-    /* Se o campo for nullo ele será ignorado e não será exibido. */
+
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String lastName;
 
+
     private String sensitiveData;
 
-    /* Se o campo estiver vazio ele será ignorado e não será exibido. */
+
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private String phoneNumber;
 
-    /*Utilizado para formatar a resposta.  */
+
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date birthDate;
 
+
     private String address;
 
-//    /*Utilizado para "ignorar" o campo na hora de retornar
-//    * o Json.  */
-//    @JsonIgnore
+
     private String gender;
+
+    private Boolean enabled;
+
 
     public PersonDTO() {
     }
+
 
     public PersonDTO(Long id, String firstName, String lastName, String address, String gender) {
         this.id = id;
@@ -54,6 +60,7 @@ public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serial
         this.address = address;
         this.gender = gender;
     }
+
 
     public Long getId() {
         return id;
@@ -119,15 +126,23 @@ public class PersonDTO extends RepresentationModel<PersonDTO>  implements Serial
         this.sensitiveData = sensitiveData;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         PersonDTO personDTO = (PersonDTO) o;
-        return Objects.equals(getId(), personDTO.getId()) && Objects.equals(getFirstName(), personDTO.getFirstName()) && Objects.equals(getLastName(), personDTO.getLastName()) && Objects.equals(getSensitiveData(), personDTO.getSensitiveData()) && Objects.equals(getPhoneNumber(), personDTO.getPhoneNumber()) && Objects.equals(getBirthDate(), personDTO.getBirthDate()) && Objects.equals(getAddress(), personDTO.getAddress()) && Objects.equals(getGender(), personDTO.getGender());
+        return Objects.equals(id, personDTO.id) && Objects.equals(firstName, personDTO.firstName) && Objects.equals(lastName, personDTO.lastName) && Objects.equals(sensitiveData, personDTO.sensitiveData) && Objects.equals(phoneNumber, personDTO.phoneNumber) && Objects.equals(birthDate, personDTO.birthDate) && Objects.equals(address, personDTO.address) && Objects.equals(gender, personDTO.gender) && Objects.equals(enabled, personDTO.enabled);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getSensitiveData(), getPhoneNumber(), getBirthDate(), getAddress(), getGender());
+        return Objects.hash(id, firstName, lastName, sensitiveData, phoneNumber, birthDate, address, gender, enabled);
     }
 }

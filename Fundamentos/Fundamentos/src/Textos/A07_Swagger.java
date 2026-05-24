@@ -37,6 +37,10 @@ public class A07_Swagger {
 	*
 	* Como implementar a documentação do Swagger na Pratica:
 	*
+	* 1- Criamos uma Interface, geralmente dentro de controles dentro uma packege
+	* chamada "docs" ficando assim /Controllers/docs/PersonControllerDocs.class
+	*
+	* 2-:
 	*     @Operation(
             summary = "Find a Person",
             description = "Find a specific Person by your id",

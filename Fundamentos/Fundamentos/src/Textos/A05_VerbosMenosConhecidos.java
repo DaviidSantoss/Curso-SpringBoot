@@ -2,21 +2,21 @@ package Textos;
 
 public class A05_VerbosMenosConhecidos {
 
+
 	// ======================
 	// PATCH
 	// ======================
 
 	/*
 	 * Pode ser utilizado para fazer updates parciais de um recurso.Por exemplo quando vc precisa
-	 * alterar apenas um campo em um recurso. Executar um PUT com todo o objeto é pesado e acarreta em
+	 * alterar apenas um campo em um recurso. Executar um PUT com todo o objeto e pesado e acarreta em
 	 * um maior consumo de banda.
-	 */
-
-	/*
+	 *
 	 * Use com moderação pois colisões entre multiplas PATCH request são mais perigosas que colisões
 	 * entre PUT request por que exige que o cliente tenha informações basicas do recurso ou irão
 	 * corrompe-lo.
 	 */
+
 
 	// ======================
 	// HEAD
@@ -26,6 +26,7 @@ public class A05_VerbosMenosConhecidos {
 	 * Possui uma funcionalidade similiar ao GET, exceto pelo fato do servidor retornar uma response
 	 * line e headers, mas sem um entity-body.
 	 */
+
 
 	// ======================
 	// TRACE
