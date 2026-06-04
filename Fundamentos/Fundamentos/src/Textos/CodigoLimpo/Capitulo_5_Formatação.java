@@ -15,5 +15,11 @@ public class Capitulo_5_Formatação {
     *   surgindo conforme se move para baixo, até encontrarmos
     *   os detalhes e as funções de baixo nivel no código fonte."
     *
+    *
+    *  "Funções Dependentes: Se uma função chama a outra, elas devem
+    *   ficar verticalmente próximas, e a que chamar deve ficar acima
+    *   da que for chamada. Se possível. Isso dá um fluxo natural ao
+    *   programa."
+    *
     *  */
 }

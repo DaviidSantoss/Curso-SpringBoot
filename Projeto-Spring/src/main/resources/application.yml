@@ -1,5 +1,10 @@
 cors:
   originPatterns: http://localhost:8080,http://localhost:3000,https://www.instagram.com/david.snt0s/
+
+
+file:
+  upload-dir: /Users/David/Documents/Curso-SpringBoot-master/Projeto-Spring/arquivos
+
 spring:
   application:
     name: Projeto-Spring
@@ -19,6 +24,12 @@ spring:
     enabled: true
     locations: classpath:db/migration
 
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215 MB
 springdoc:
   enable-hateoas: false
   paths-to-match: /books/**, /person/**
