@@ -1,9 +1,6 @@
 package Santos.David.Exception.hadler;
 
-import Santos.David.Exception.ExceptionResponse;
-import Santos.David.Exception.RequiredObjectIsNullException;
-import Santos.David.Exception.ResourceNotFoundException;
-import Santos.David.Exception.UnsupportedMathOperationException;
+import Santos.David.Exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -55,15 +52,26 @@ public class CustomEntityReponseHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<ExceptionResponse>(response, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(RequiredObjectIsNullException.class)
-    public final ResponseEntity<ExceptionResponse> handleBadRequestException(Exception ex, WebRequest request) {
+    @ExceptionHandler(FileNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handleFileNotFoundExceptions(Exception ex, WebRequest request) {
 
         ExceptionResponse response = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false));
 
-        return new ResponseEntity<ExceptionResponse>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<ExceptionResponse>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FileStorageException.class)
+    public final ResponseEntity<ExceptionResponse> handleFileStorageExceptions(Exception ex, WebRequest request) {
+
+        ExceptionResponse response = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<ExceptionResponse>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
