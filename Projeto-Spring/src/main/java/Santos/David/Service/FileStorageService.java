@@ -1,9 +1,12 @@
 package Santos.David.Service;
 
+import Santos.David.Exception.FileNotFoundException;
 import Santos.David.Exception.FileStorageException;
 import Santos.David.config.FileStorageConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -83,6 +86,34 @@ public class FileStorageService {
         catch (Exception e) {
             logger.error("Could not store file" + fileName +". Please try Again.");
             throw new FileStorageException("Could not store file" + fileName + ". Please try Again.",e);
+        }
+    }
+
+    /* recebe o nome do arquivo que o usuário quer baixar,ex: "curriculo.pdf" */
+    public Resource loadFileAsResource(String fileName){
+
+        try {
+
+            /* resolve() → junta o diretório base  com o nome do arquivo.
+            *  normalize → remove redundâncias do caminho. */
+            Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+
+            /* filePath.toUri() → converte o Path para URI.
+            *  UrlResource → wrapper Spring que transforma essa URI
+            *  em um objeto "Resource" — pronto para ser enviado como
+            *  resposta HTTP para o cliente.  */
+            Resource resource = new UrlResource(filePath.toUri());
+
+            if (resource.exists()){
+                return resource;
+            }else {
+                logger.error("File not Found" + fileName);
+                throw new FileNotFoundException("File not Found" + fileName,null);
+            }
+
+        }catch (Exception e){
+            logger.error("File not Found" + fileName);
+            throw new FileNotFoundException("File not Found" + fileName,e);
         }
     }
 }
