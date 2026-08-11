@@ -1,19 +1,26 @@
 package Santos.David.Controllers;
 
 import Santos.David.Controllers.docs.PersonControllerDocs;
+import Santos.David.File.exporter.MidiaTypes;
 import Santos.David.Service.PersonService;
 import Santos.David.data.dto.PersonDTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 
 @RestController
@@ -31,9 +38,7 @@ public class PersonController implements PersonControllerDocs {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public PersonDTO findById(@PathVariable("id") Long id) {
-
         var person  = service.findById(id);
-
         return person;
     }
 
@@ -49,7 +54,6 @@ public class PersonController implements PersonControllerDocs {
             @RequestParam(value = "size",defaultValue = "12") Integer size,
             @RequestParam(value = "direction",defaultValue = "asc") String direction
     )
-
     {
         /* "o que o usuário passou é 'desc' (ignorando maiúsculas)?", sim → ordena decrescente
         *   não → ordena crescente (default) */
@@ -58,6 +62,39 @@ public class PersonController implements PersonControllerDocs {
         Pageable pageable = PageRequest.of(page, size,Sort.by(sortDirection,"firstName"));
 
         return ResponseEntity.ok(service.findAll(pageable));
+    }
+
+
+    @GetMapping(value = "/exportPage",produces = {MidiaTypes.APPLICATION_XLSX_VALUE, MidiaTypes.APPLICATION_CSV_VALUE})
+    @Override
+    public  ResponseEntity<Resource> exportPage(
+            @RequestParam(value = "page",defaultValue = "0") Integer page,
+            @RequestParam(value = "size",defaultValue = "12") Integer size,
+            @RequestParam(value = "direction",defaultValue = "asc") String direction,
+            HttpServletRequest request
+    )
+    {
+        /* "o que o usuário passou é 'desc' (ignorando maiúsculas)?", sim → ordena decrescente
+        *   não → ordena crescente (default) */
+        var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC: Sort.Direction.ASC;
+
+        Pageable pageable = PageRequest.of(page, size,Sort.by(sortDirection,"firstName"));
+
+        String acceptHeader = request.getHeader(HttpHeaders.ACCEPT);
+
+        Resource file = service.exportPage(pageable, acceptHeader);
+
+        var contentType =  acceptHeader != null ? acceptHeader : "application/octet-stream";
+        var fileExtension = MidiaTypes.APPLICATION_XLSX_VALUE.equalsIgnoreCase(acceptHeader) ? ".xlsx" : "csv";
+        var fileName = "people_exported" + fileExtension;
+
+        return ResponseEntity.ok()
+
+                .contentType(MediaType.parseMediaType(contentType))
+
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment=; filename=\"" + fileName + "\"")
+                .body(file);
     }
 
     @GetMapping(value = "/findPeopleByName/{firstName}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -90,8 +127,13 @@ public class PersonController implements PersonControllerDocs {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     @Override
     public PersonDTO create(@RequestBody PersonDTO person) {
-
         return  service.create(person);
+   }
+
+   @PostMapping(value = "massCreation",produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
+   public List<PersonDTO> massCreation(@RequestParam("file") MultipartFile file) {
+        return  service.massCreation(file);
    }
 
 
